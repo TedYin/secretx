@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["TedYin"]
   spec.email         = ["tedworld.time@gmail.com"]
 
-  spec.summary       = %q{A set of cipher utils.}
+  spec.summary       = %q{Easy Cipher!}
   spec.description   = %q{Make it easy to use Cipher .}
   spec.homepage      = 'https://github,com/TedYin/secret' 
   spec.license       = 'MIT'
