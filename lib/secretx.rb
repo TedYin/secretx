@@ -1,4 +1,8 @@
 require 'secretx/configuration'
+require 'secretx/encode'
+require 'secretx/rsa'
+require 'secretx/mode'
+require 'secretx/aes'
 
 module SecretX
   def self.conf
@@ -7,9 +11,5 @@ module SecretX
 
   def self.config(&block)
     block.call(conf)
-  end
-  
-  def self.rsa
-    
   end
 end
