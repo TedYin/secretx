@@ -1,5 +1,6 @@
-require 'secret'
-module Secret
+require 'secretx/mode'
+
+module SecretX
   class Configuration
     attr_accessor :aes_mode, :aes_key, :aes_iv, :rsa_pub_key_path,
                   :rsa_pri_key_path, :rsa_pwd, :hash_mode,

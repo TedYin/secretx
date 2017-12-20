@@ -1,9 +1,6 @@
-require 'secret'
-require 'secret/encode'
-require 'openssl'
-module Secret
+module SecretX
   class RSA
-    include Secret::Encode 
+    include SecretX::Encode 
     def initialize
       init_private_key
       init_public_key
@@ -38,21 +35,21 @@ module Secret
     end
 
     def sign(msg)
-      encode_if_need pri_k.sign(Secret.conf.hash_mode, msg)
+      encode_if_need pri_k.sign(SecretX.conf.hash_mode, msg)
     end
 
     def verify_sign(signed_msg, origin_msg)
-      pub_k.verify Secret.conf.hash_mode, decode_if_need(signed_msg), origin_msg
+      pub_k.verify SecretX.conf.hash_mode, decode_if_need(signed_msg), origin_msg
     end
 
     private
 
-    def init_private_key(path = Secret.conf.rsa_pri_key_path, pwd = Secret.conf.rsa_pwd)
+    def init_private_key(path = SecretX.conf.rsa_pri_key_path, pwd = SecretX.conf.rsa_pwd)
       raise 'Private pem path can not be nil !' if path.to_s == ''
       @private_key ||= OpenSSL::PKey::RSA.new(File.read(path), pwd)
     end
 
-    def init_public_key(path = Secret.conf.rsa_pub_key_path)
+    def init_public_key(path = SecretX.conf.rsa_pub_key_path)
       raise 'Public pem path can not be nil !' if path.to_s == ''
       @public_key ||= OpenSSL::PKey::RSA.new(File.read(path))
     end

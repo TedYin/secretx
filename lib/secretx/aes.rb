@@ -1,11 +1,10 @@
+require 'secretx/encode'
 require 'openssl'
-require 'secret'
-require 'secret/encode'
-require 'secret/mode'
+require 'secretx/mode'
 
-module Secret
+module SecretX
   class AES
-    include Secret::Encode
+    include SecretX::Encode
 
     def initialize(mode = Mode::AES_256_CBC)
       @cipher = OpenSSL::Cipher::Cipher.new mode
@@ -23,14 +22,14 @@ module Secret
       self.mode.decrypt msg
     end
 
-    def encrypt(msg, key = Secret.conf.aes_key, iv = Secret.conf.aes_iv)
+    def encrypt(msg, key = SecretX.conf.aes_key, iv = SecretX.conf.aes_iv)
       @cipher.encrypt
       @cipher.key = digest_key(key)
       @cipher.iv = iv if iv != nil
       encode_if_need(@cipher.update(msg) + @cipher.final)
     end
 
-    def decrypt(msg, key = Secret.conf.aes_key, iv = Secret.conf.aes_iv)
+    def decrypt(msg, key = SecretX.conf.aes_key, iv = SecretX.conf.aes_iv)
       @cipher.decrypt
       @cipher.key = digest_key(key)
       @cipher.iv = iv if iv != nil
@@ -40,7 +39,7 @@ module Secret
     private
 
     def digest_key(key)
-      hash_mode = Secret.conf.hash_mode
+      hash_mode = SecretX.conf.hash_mode
       if hash_mode
         hash_mode.hexdigest key
       else

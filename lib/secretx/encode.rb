@@ -1,6 +1,4 @@
-require 'secret'
-require 'openssl'
-module Secret
+module SecretX
   module Encode
     def encode_if_need(msg)
       if base64?
@@ -21,7 +19,7 @@ module Secret
     private
 
     def base64?
-      @mode = Secret.conf.encode_mode
+      @mode = SecretX.conf.encode_mode
       if @mode&.name == 'Base64'
         true
       else

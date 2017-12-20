@@ -1,11 +1,10 @@
 require 'test_helper'
-require 'secret/aes'
-require 'secret/mode'
+require 'secretx/aes'
 
-class SecretTest < Minitest::Test
+class SecretX::AESTest < Minitest::Test
   def test_aes_cbc
     msg = 'super hero'
-    cipher = Secret::AES.mode(Secret::Mode::AES_256_CBC)
+    cipher = SecretX::AES.mode(SecretX::Mode::AES_256_CBC)
     signed = cipher.encrypt msg
     assert signed
     origin = cipher.decrypt signed
