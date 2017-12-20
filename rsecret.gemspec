@@ -4,14 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "secret/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "secret"
+  spec.name          = "rsecret"
   spec.version       = Secret::VERSION
   spec.authors       = ["TedYin"]
   spec.email         = ["tedworld.time@gmail.com"]
 
   spec.summary       = %q{Easy Cipher!}
   spec.description   = %q{Make it easy to use Cipher .}
-  spec.homepage      = 'https://github,com/TedYin/secret' 
+  spec.homepage      = 'https://github.com/TedYin/rsecret' 
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
